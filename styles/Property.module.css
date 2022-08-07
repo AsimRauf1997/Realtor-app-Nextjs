@@ -1,0 +1,9 @@
+.zoominEffect {
+  transition: 0.4s ease;
+  opacity: 0.9;
+}
+.zoominEffect:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  opacity: 1;
+}
