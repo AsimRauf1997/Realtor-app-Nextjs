@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import {Box, Select, Flex,Text,Input, Spinner, Icon, Button} from '@chakra-ui/react'
 import { useRouter } from "next/router";
-
-
-
 import { filterData,getFilterValues } from "../utils/filteredData";
 const SearchFilters = () => {
     const [filters,setFilters]= useState(filterData)
+    console.log(filters)
     const router = useRouter()
     const searchProperties=(filterValues)=>{
         const path = router.pathname
@@ -14,7 +12,7 @@ const SearchFilters = () => {
         const values = getFilterValues(filterValues)
         values.forEach(item=>{
           if(item.value && filterValues?.[item.name]){
- query[item.name] = item.value
+          query[item.name] = item.value
           }
            
         }) 
@@ -37,6 +35,14 @@ const SearchFilters = () => {
                 </Select>
             </Box>
         ))}
+        <Flex justifyContent='center' alignItems='center'>
+          <Button color="red.400" onClick={()=>{
+            router.push({pathname:'' })
+          }}>
+          Reset Filters
+        </Button>
+        </Flex>
+        
     </Flex>
   )
 }
