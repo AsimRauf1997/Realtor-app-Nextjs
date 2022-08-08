@@ -22,10 +22,13 @@
         
              <Link href={`property/${externalID}`} passHref >
         <Flex className={styles.zoominEffect}
-         flexWrap='wrap' w='420px' p='5' paddingTop='0' justifyContent='flex-start' cursor='pointer'  borderColor='gray.100' >
-            <Box>
+         flexWrap='wrap' w='420px' p='5'  paddingTop='0' justifyContent='flex-start' cursor='pointer'  borderColor='gray.100' >
+            <Box borderLeft='2px' borderTop='2px' p='1' borderRadius='10' borderColor='blue.300'>
                 <Skeleton isLoaded={!loading} width={400}>
-                <Image src={coverPhoto.url} width={400} height={260}  alt='image'/>
+                <Image src={coverPhoto.url} width={400} height={260} style={{
+                    borderRadius:10
+                    
+                }} alt='image'/>
                 </Skeleton>
             </Box>
             

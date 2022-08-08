@@ -1,15 +1,22 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { Box, Flex, Text, Icon } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Text,
+  Icon,
+  useDisclosure,
+  Collapse,
+} from "@chakra-ui/react";
 import Lottie from "react-lottie";
-import { BsFilter } from "react-icons/bs";
+import { FcClearFilters } from "react-icons/fc";
 import SearchFilters from "../components/SearchFilters";
 import { Property } from "../components/Property";
 import noResult from "../assets/lottie/noresult";
 import { baseUrl, fetchApi } from "../utils/fetchapi";
 const Search = ({ properties }) => {
-  const [searchFilters, setSearchFilters] = useState(false);
+  const { isOpen, onToggle } = useDisclosure();
   const router = useRouter();
   const defaultOptions = {
     loop: true,
@@ -24,19 +31,21 @@ const Search = ({ properties }) => {
       <Flex
         cursor='pointer'
         bg='gray.100'
-        borderBottom='1px'
         borderColor='gray.200'
         padding='2'
         fontSize='lg'
         fontWeight='bold'
         justifyContent='center'
         alignItems='center'
-        onClick={() => setSearchFilters(!searchFilters)}
+        onClick={onToggle}
       >
         <Text> Search Property By Filtres</Text>
-        <Icon pl='2' w='7' as={BsFilter} />
+        <Icon pl='2' w='7' as={FcClearFilters} />
       </Flex>
-      {searchFilters && <SearchFilters />}
+      <Collapse in={isOpen} animateOpacity>
+        <SearchFilters />
+      </Collapse>
+
       <Text fontSize='2xl' p='4' fontWeight='bold'>
         Properties {router.query.purpose}
       </Text>
